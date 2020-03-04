@@ -15,18 +15,14 @@ function startTimer(duration, display) {
     }, 1000);      
 }
 
-window.onload = function () {
-    var fiveMinutes = 60 * 2,
+    function timerStart() {
+    var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };
 
-// var submitBtn = document.getElementById("noAnswer");
-
-// $(document).ready(function() {
-
-//     $("#noAnswer").on("click", function() {
-//       alert("You must submit an answer!");
-//     });
-
-//   });
+window.onload = function () {
+var fiveMinutes = 60 * 5,
+display = document.querySelector('#time');
+startTimer(fiveMinutes, display);
+};

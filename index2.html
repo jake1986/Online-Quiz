@@ -32,6 +32,13 @@
         </div>
     </div>
     <div id="results"></div>
+    <script>
+        window.onload = function () {
+        var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
+    </script>
 </body>
 
 </html>

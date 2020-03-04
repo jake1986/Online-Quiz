@@ -9,8 +9,6 @@
     <title>Code Quiz</title>
 
 <body>
-    <div id="time">Time Remaining: <span id="time">0</span></div>
-    <br />
     <div id="container">
         <div id="quiz">
             <h1>Timed Code Quiz</h1>
@@ -19,7 +17,7 @@
                 in order to move onto the following question. If you miss a question, time will be deducted from the
                 timer. <strong>CAUTION: </strong>Do not select answer unless you are sure. Once the answer is selected,
                 you will be moved on to the following question.</p>
-            <button id="submit"><a href="index2.html">Start Quiz</a></button>
+            <button onclick="timerStart()" id="submit"><a href="index2.html">Start Quiz</a></button>
         </div>
         <div id="results"></div>
     </div>
