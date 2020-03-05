@@ -2,25 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../Online-Quiz/style.css">
-    <script src="../Online-Quiz/app.js"></script>
-    <title>Code Quiz</title>
+    <title>Document</title>
+</head>
 
 <body>
-    <div id="container">
-        <div id="quiz">
-            <h1>Timed Code Quiz</h1>
-            <p>On the following pages, you will be presented with series of questions. Read the question and then select
-                the best answer by selecting the bubble that corresponds to the answer. Then select the "Submit" button
-                in order to move onto the following question. If you miss a question, time will be deducted from the
-                timer. <strong>CAUTION: </strong>Do not select answer unless you are sure. Once the answer is selected,
-                you will be moved on to the following question.</p>
-            <button onclick="timerStart()" id="submit"><a href="index2.html">Start Quiz</a></button>
+    <div class="container-fluid">
+        <div class="container ">
+            <div id="hide1">
+                <h1>Timed Code Quiz</h1>
+                <br>
+                <h3>On the following pages, you will be presented with series of questions. Read the question and then select
+                    the best answer by selecting the button that corresponds to the answer. Then select the "Submit" button
+                    in order to move onto the following question. If you miss a question, time will be deducted from the
+                    timer. <strong>CAUTION: </strong>Do not select answer unless you are sure. Once the answer is selected,
+                    you will be moved on to the following question.</h3>
+                <br>
+                <button class="btn rounded bg-success" id="startBtn">Start</button>
+            </div>
+            <div id="quizBox" class="hide">
+                <p><span id="countDown">5:00</span>
+                <p id="questions">Questions</p>
+                <div id="buttons"></div>
+            </div>
+            <div id="finalScore" class="hide">
+                <h4>Score: <span id="yourScore"></span>></h4>
+                <input id="initials" type="text"> <button id="addScore">Add score</button>
+                <table id="scoreGrid" class="table">
+                    <tr>
+                        <td>Initials</td>
+                        <td>Score</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="nextBtn hide" id="navigationBox">
+                <button class="btn rounded bg-success" id="nextBtn">Next Question</button>
+            </div>
+
+
         </div>
-        <div id="results"></div>
     </div>
+    <script src="../Online-Quiz/app.js"></script>
 </body>
 
 </html>
+

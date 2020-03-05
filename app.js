@@ -1,67 +1,130 @@
-// 5 minute timer 
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
-        if (--timer < 0) {
-            timer = duration;
+var startBtn = document.getElementById("startBtn");
+var questionArr = [
+    {
+        question: "Commonly used data types DO NOT include:",
+        choices: ["1. string", "2. boolean", "3. alerts", "4. numbers"],
+        correctAnswer: 0
+    },
+    {
+        question: "The condition in an if/else statement is enclosed in _________ .",
+        choices: ["1. quotes", "2. curly braces", "3. parentheses", "4. square brackets"],
+        correctAnswer: 0
+    },
+    {
+        question: "Arrays in JavaScript can be used to store:",
+        choices: ["1. numbers and strings", "2. other array(s)", "3. quotes", "4. all of the above"],
+        correctAnswer: 0
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing cotent to the debugger is:",
+        choices: ["1. Javascript", "2. for loops", "3. console.log", "4. terminal/bash"],
+        correctAnswer: 0
+    },
+    {
+        question: "String values must be enclosed within __________ when being assigned to variables.",
+        choices: ["1. commas", "2. curly braces", "3. quotes", "4. parentheses"],
+        correctAnswer: 0
+    }];
+
+var score = 0;
+var time = 1;
+var timer = 300;
+var stopInterval;
+var startBtn = document.getElementById("startBtn");
+var nextBtn = document.getElementById("nextBtn");
+var currentQuestionIndex = 0;
+var quizInterval;
+
+startBtn.addEventListener("click", function () {
+
+    stopInterval = setInterval(function () {
+        time--;
+        startBtn.textContent = "Your quiz starts in " + time;
+        if (time === 0) {
+            clearInterval(stopInterval);
+
+            document.getElementById("hide1").classList.add("hide")
+            document.getElementById("quizBox").classList.remove("hide");
+            document.getElementById("navigationBox").classList.remove("hide");
+
+            quizInterval = setInterval(quizTimer, 1000);
         }
-        if (timer == 0)
-            alert("Time's Up!");
     }, 1000);
+
+    populateQuestion();
+})
+
+function quizTimer() {
+    timer--;
+    var minutes = Math.floor(timer / 60);
+    var seconds = timer % 60;
+    document.getElementById("countDown").innerText = minutes + ":" + seconds;
 }
 
-function timerStart() {
-    var fiveMinutes = 60 * 5,
-        display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
-};
+function populateQuestion() {
 
-// window.onload = function () {
-// var fiveMinutes = 60 * 5,
-// display = document.querySelector('#time');
-// startTimer(fiveMinutes, display);
-// };
+    document.getElementById("questions").innerText = "Q" + (currentQuestionIndex + 1) + ": " + questionArr[currentQuestionIndex].question;
+    var buttons = document.getElementById("buttons");
+    buttons.innerHTML = "";
 
-// The below code I want to use for when a user selects an answer. When the answer is selected, I want the for loop to run through the options to determine which answer is correct. When the answer is selected, I then want to append an element to the "results" div that says "Right!" or "Wrong!"
-
-var pageOne = document.getElementsByClassName("questionsOne");
-pageOne.addEventListener("click", function () {
-    // alert("this is working"); NOT WORKING HAHA
-    var string = false;
-    var boolean = false;
-    var alerts = true;
-    var numbers = false;
-
-    var arr1 = [string, boolean, alerts, numbers]
-
-    var oneResults = document.getElementById("results");
-    
-    for (var i = 0; i < arr1.length; i++) {
-        if (string) {
-            var wrong = document.createElement("p");
-            wrong.textContent = "Wrong!";
-            oneResults.appendChild(wrong);
-        }
-        if (boolean) {
-            var wrong = document.createElement("p");
-            wrong.textContent = "Wrong!";
-            oneResults.appendChild(wrong);
-        }
-        if (alerts) {
-            var right = document.createElement("p");
-            right.textContent = "Right!";
-            oneResults.appendChild(right);
-        }
-        if (numbers){
-            var wrong = document.createElement("p");
-            wrong.textContent = "Wrong!";
-            oneResults.appendChild(wrong);
-        }
+    for (var i = 0; i < questionArr[currentQuestionIndex].choices.length; i++) {
+        var button = document.createElement("button");
+        button.innerText = questionArr[currentQuestionIndex].choices[i];
+        button.className = "btn rounded bg-primary choices";
+        button.answerIndex = i;
+        button.addEventListener("click", clickAnswer);
+        buttons.appendChild(button);
     }
-});
+}
 
+function clickAnswer() {
+    var isCorrect = false;
+    if (questionArr[currentQuestionIndex].correctAnswer == this.answerIndex) {
+        isCorrect = true;
+    }
+
+    if (isCorrect) {
+        score += 10;
+        nextQuestion();
+    }
+    else {
+        timer -= 15;
+    }
+}
+
+function nextQuestion() {
+    if (currentQuestionIndex < (questionArr.length - 1)) {
+        currentQuestionIndex++;
+        populateQuestion();
+    }
+    else {
+        score += timer;
+        document.getElementById("navigationBox").classList.add("hide");
+        document.getElementById("quizBox").classList.add("hide");
+        document.getElementById("finalScore").classList.remove("hide");
+        clearInterval(quizInterval);
+    }
+}
+
+nextBtn.addEventListener("click", nextQuestion);
+
+document.getElementById("addScore").addEventListener("click", function () {
+    var myscore = {
+        initials: document.getElementById("initials").value,
+        score: score
+    };
+
+    var highScores = localStorage.getItem("highScores");
+    if (highScores != null) {
+        highScores = JSON.parse(highScores);
+    }
+    else {
+        highScores = [];
+    }
+
+    highScores.push(myscore);
+    var showScore = document.createElement("tr");
+    myscore.textContent = showScore;
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+});

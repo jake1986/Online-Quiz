@@ -1,78 +1,85 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+body {
+    background-color: white;
 }
 
-html {
-    width: 1200px;;
-}
-
-#time {
-    text-align: right;
-}
-
-h1 {
-    text-align: center;
-}
-
-p {
-    width: 40%;
-    text-align: center;
-    margin-left: 360px;
-    margin-top: 10px;
-}
-
-button {
-    margin-top: 15px;
-    margin-left: 566px;
-    background: purple;
-    color: white;
-    padding: 10px;
-}
-
-#container {
-    margin-top: 120px;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-
-.questionBox {
-    text-align: center;
+#startBtn {
+    padding: 20px;
+    width: 200px;
+    font-size: 30px;
+    margin-left: 270px;
     
-    text-align: left; 
-    list-style: inside; 
-    padding-left: 25%; 
-    padding-right: 35%;
 }
-
-.i5 {
-    width: 50%;
-}
-
-.i6 {
-    width: 50%;
+h1, h3 {
     text-align: center;
 }
 
-.initials {
-    margin-left: 440px;
-    margin-top: 25px;
+h3 {
+    font-family: sans-serif;
+    font-size: 20px;
 }
 
-.doneBtn {
-    position: relative;
-    right: 335px;
-    bottom: 38px;
+.container {
+    margin-top: 60px;
+    width: 900px;
+    height: 520px;
+    padding: 80px;
+    background-color: white;
 }
-
-.inline {
+.hide {
+    display: none;
+}
+#countDown {
+    position: fixed;
+    top: 105px;
+    right: 300px;
+    border: 2px solid black;
+    padding: 10px 40px;
+}
+p {
+    margin : 40px 0px 20px 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.choices {
+    margin: 10px;
+    display: block;
+    padding: 10px 100px;
+    font-weight: bolder;
    
 }
-
-.score {
-    margin-left: 542px;
+.nextBtn {
+    margin-top: 50px;
+    margin-left: 260px;
+    
+} 
+#nextBtn {
+    padding: 10px 70px;
+    
 }
+
+@media screen and (max-width: 990px) {
+    #startBtn {
+        margin-left: 185px;
+    }
+}
+
+@media screen and (max-width: 763px) {
+    #startBtn {
+        margin-left: 85px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container {
+        width: 450px;
+    }
+}
+
+
+@media screen and (max-width: 560px) {
+    #startBtn {
+        margin-left: 50px;
+    }
+}
+
+
