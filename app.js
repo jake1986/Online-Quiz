@@ -2,27 +2,27 @@ var startBtn = document.getElementById("startBtn");
 var questionArr = [
     {
         question: "Commonly used data types DO NOT include:",
-        choices: ["1. string", "2. boolean", "3. alerts", "4. numbers"],
+        choices: ["string", "boolean", "alerts", "numbers"],
         correctAnswer: 0
     },
     {
         question: "The condition in an if/else statement is enclosed in _________ .",
-        choices: ["1. quotes", "2. curly braces", "3. parentheses", "4. square brackets"],
+        choices: ["quotes", "curly braces", "parentheses", "square brackets"],
         correctAnswer: 0
     },
     {
         question: "Arrays in JavaScript can be used to store:",
-        choices: ["1. numbers and strings", "2. other array(s)", "3. quotes", "4. all of the above"],
+        choices: ["numbers and strings", "other array(s)", "quotes", "all of the above"],
         correctAnswer: 0
     },
     {
         question: "A very useful tool used during development and debugging for printing cotent to the debugger is:",
-        choices: ["1. Javascript", "2. for loops", "3. console.log", "4. terminal/bash"],
+        choices: ["Javascript", "for loops", "console.log", "terminal/bash"],
         correctAnswer: 0
     },
     {
         question: "String values must be enclosed within __________ when being assigned to variables.",
-        choices: ["1. commas", "2. curly braces", "3. quotes", "4. parentheses"],
+        choices: ["commas", "curly braces", "quotes", "parentheses"],
         correctAnswer: 0
     }];
 
@@ -54,12 +54,29 @@ startBtn.addEventListener("click", function () {
     populateQuestion();
 })
 
-function quizTimer() {
-    timer--;
-    var minutes = Math.floor(timer / 60);
-    var seconds = timer % 60;
-    document.getElementById("countDown").innerText = minutes + ":" + seconds;
+
+// 5 minute timer 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+            timer = duration;
+        } 
+        if (timer == 0) 
+            alert("Time's Up!");
+    }, 1000);      
 }
+
+window.onload = function () {
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
 
 function populateQuestion() {
 
