@@ -1,3 +1,4 @@
+  
 var startBtn = document.getElementById("startBtn");
 var questionArr = [
     {
@@ -35,21 +36,23 @@ var nextBtn = document.getElementById("nextBtn");
 var currentQuestionIndex = 0;
 var quizInterval;
 
+
+
 startBtn.addEventListener("click", function () {
 
-    stopInterval = setInterval(function () {
-        time--;
-        startBtn.textContent = "Your quiz starts in " + time;
-        if (time === 0) {
-            clearInterval(stopInterval);
+    // stopInterval = setInterval(function () {
+    //     time--;
+    //     startBtn.textContent = "Your quiz starts in " + time;
+    //     if (time === 0) {
+    //         clearInterval(stopInterval);
 
-            document.getElementById("hide1").classList.add("hide")
-            document.getElementById("quizBox").classList.remove("hide");
-            document.getElementById("navigationBox").classList.remove("hide");
+    //         document.getElementById("hide1").classList.add("hide")
+    //         document.getElementById("quizBox").classList.remove("hide");
+    //         document.getElementById("navigationBox").classList.remove("hide");
 
-            quizInterval = setInterval(quizTimer, 1000);
-        }
-    }, 1000);
+    //         quizInterval = setInterval(quizTimer, 1000);
+    //     }
+    // }, 1000);
 
     populateQuestion();
 })
@@ -77,6 +80,11 @@ window.onload = function () {
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };
+
+document.getElementById("hide1").classList.add("hide")
+            document.getElementById("quizBox").classList.remove("hide");
+            document.getElementById("navigationBox").classList.remove("hide");
+
 
 function populateQuestion() {
 
